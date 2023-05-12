@@ -1,8 +1,9 @@
 <?php
-namespace Database;
+namespace Database\pdo;
 
-use mysqli;
-use Exception;
+
+use PDO;
+use PDOException;
 
 class Connection
 {
@@ -17,24 +18,27 @@ class Connection
     public function __construct()
     {
         try {
-            $this->conn = new mysqli($this->db_host, $this->db_username, $this->db_password, $this->db_name);
-            $this->conn->set_charset("utf8mb4");
-        } catch (Exception $e) {
+            $this->conn = new PDO("mysql:host={$this->db_host};dbname={$this->db_name};port={$this->db_port};charset=utf8mb4", $this->db_username, $this->db_password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->exec("SET CHARACTER SET utf8");
+        } catch (PDOException $e) {
             die("Error al conectar a la base de datos: " . $e->getMessage());
         }
     }
 
-    public function query($sql) {
+    public function query($sql)
+    {
         return $this->conn->query($sql);
     }
-    
-    public function prepare($sql) {
+
+    public function prepare($sql)
+    {
         return $this->conn->prepare($sql);
     }
 
     public function __destruct()
     {
-        $this->conn->close();
+        $this->conn = null;;
     }
 
 }

@@ -47,7 +47,7 @@ class ContactController extends Controller
             if (empty($errores)) {
                 $contact = new Contact($name, $email, $phone);
                 $this->model->create($contact);
-                header("location: /?mensaje=creado");
+                header("location: /?mensaje=Contacto creado");
             } else {
                 return $this->view('/contacs/create', $errores,);
             }
@@ -99,7 +99,7 @@ class ContactController extends Controller
             if (is_numeric($id) && empty($errores)) {
                 $contact = new Contact($name, $email, $phone, $id);
                 $this->model->update($contact);
-                header("location: /?mensaje=contacto actualizado");
+                header("location: /?mensaje=Contacto actualizado");
             } else {
                 header("location: /?mensaje=id incorrecto");
             }
@@ -112,7 +112,7 @@ class ContactController extends Controller
             $id = $_POST['id'];
 
             $this->model->delete($id);
-            header("location: /?mensaje=eliminado");
+            header("location: /?mensaje=Contacto eliminado");
         }
     }
 }

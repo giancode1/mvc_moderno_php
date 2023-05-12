@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Database\Connection;
+use Database\mysqli\Connection;
 
 class ContactModel 
 {

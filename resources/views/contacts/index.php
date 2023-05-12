@@ -61,6 +61,7 @@ require_once("../resources/views/template/header.php");
 						echo $_GET['mensaje'];
 					}
 				?>
+
 			</div>
 			<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
 		</div>
@@ -73,6 +74,9 @@ require_once("../resources/views/template/header.php");
 			var toastLiveExample = document.getElementById('liveToast');
 			var toast = new bootstrap.Toast(toastLiveExample);
 			toast.show();
+			
+			// Borrar parámetros de la URL
+			history.pushState({}, null, window.location.pathname);
 		});
 	</script>
 <?php } ?>
