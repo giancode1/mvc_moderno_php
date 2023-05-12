@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Contact 
+class Contact
 {
     public $id;
     public $name;
